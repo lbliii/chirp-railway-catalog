@@ -12,6 +12,7 @@ from chirp_railway_conformance import (
     ManifestError,
     load_manifest,
     run_local,
+    validate_operations,
     validate_repository,
 )
 
@@ -52,6 +53,12 @@ def _manifest(repo: Path, *, required: list[str] | None = None) -> Path:
                     "chirp_locked": "0.10.0",
                     "start_command": f"{sys.executable} app.py",
                     "health_path": "/ready",
+                    "owner": "fixture-owner",
+                    "support_url": "https://github.com/example/fixture/issues",
+                    "status": "draft",
+                    "public_url": None,
+                    "demo_url": None,
+                    "last_successful_smoke": None,
                     "services": ["app"],
                     "variables": [
                         {"name": "CHIRP_ENV", "source": "template", "secret": False},
@@ -59,6 +66,14 @@ def _manifest(repo: Path, *, required: list[str] | None = None) -> Path:
                     ],
                 },
                 "required_categories": categories,
+                "required_operations": [
+                    "deployment",
+                    "ejection",
+                    "restart",
+                    "rollback",
+                    "shutdown",
+                    "update",
+                ],
                 "checks": checks,
             }
         ),
@@ -176,3 +191,55 @@ def test_local_runner_uses_starter_venv_for_railway_python_command(tmp_path: Pat
     report = run_local(load_manifest(manifest_path), repo, startup_timeout=10)
 
     assert [result.id for result in report.results] == ["home", "ready"]
+
+
+@pytest.mark.issue(737)
+def test_smoke_shares_cookies_and_extracted_values(tmp_path: Path) -> None:
+    repo = _repo(tmp_path)
+    manifest_path = _manifest(repo, required=["full-page"])
+    raw = json.loads(manifest_path.read_text())
+    raw["checks"] = [
+        {
+            "id": "extract",
+            "category": "full-page",
+            "path": "/",
+            "contains": ["hello"],
+            "extract": {"word": "(hello)"},
+        },
+        {
+            "id": "interpolate",
+            "category": "full-page",
+            "path": "/{{word}}",
+            "contains": ["hello"],
+        },
+    ]
+    manifest_path.write_text(json.dumps(raw))
+    manifest = load_manifest(manifest_path)
+    report = run_local(manifest, repo, startup_timeout=10)
+
+    assert [result.id for result in report.results] == ["extract", "interpolate"]
+
+
+@pytest.mark.issue(737)
+def test_operation_receipt_requires_every_lifecycle_surface(tmp_path: Path) -> None:
+    repo = _repo(tmp_path)
+    manifest = load_manifest(_manifest(repo))
+    receipt_path = repo / "operations.json"
+    receipt = {
+        "template": "fixture",
+        "source_ref": "abc123",
+        "deployment_id": "deployment-123",
+        "commit": "1234567890abcdef",
+        "operations": {
+            name: {"status": "passed", "evidence": f"proof for {name}"}
+            for name in manifest.required_operations
+        },
+    }
+    receipt_path.write_text(json.dumps(receipt))
+
+    assert validate_operations(manifest, receipt_path) == receipt
+
+    del receipt["operations"]["ejection"]
+    receipt_path.write_text(json.dumps(receipt))
+    with pytest.raises(ConformanceError, match=r"\[ejection\]"):
+        validate_operations(manifest, receipt_path)

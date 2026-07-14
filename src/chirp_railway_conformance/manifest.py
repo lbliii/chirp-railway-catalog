@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -18,6 +19,9 @@ KNOWN_CATEGORIES = frozenset(
         "readiness",
         "sse",
     }
+)
+KNOWN_OPERATIONS = frozenset(
+    {"deployment", "ejection", "restart", "rollback", "shutdown", "update"}
 )
 
 
@@ -50,6 +54,7 @@ class Check:
     request_headers: tuple[tuple[str, str], ...]
     body: str | None
     contains: tuple[str, ...]
+    extract: tuple[tuple[str, str], ...]
     stream: bool
 
 
@@ -65,10 +70,17 @@ class Manifest:
     chirp_locked: str
     start_command: str
     health_path: str
+    owner: str
+    support_url: str
+    status: str
+    public_url: str | None
+    demo_url: str | None
+    last_successful_smoke: str | None
     services: tuple[str, ...]
     variables: tuple[Variable, ...]
     required_categories: tuple[str, ...]
     checks: tuple[Check, ...]
+    required_operations: tuple[str, ...]
 
     @property
     def required_user_variables(self) -> tuple[str, ...]:
@@ -143,6 +155,16 @@ def _parse_checks(raw: Any) -> tuple[Check, ...]:
         stream = item.get("stream", False)
         if not isinstance(stream, bool):
             raise ManifestError(f"{where}.stream must be a boolean")
+        extract = _string_pairs(item.get("extract"), f"{where}.extract")
+        for name, pattern in extract:
+            try:
+                compiled = re.compile(pattern)
+            except re.error as exc:
+                raise ManifestError(f"{where}.extract.{name} is not a valid regex") from exc
+            if compiled.groups != 1:
+                raise ManifestError(
+                    f"{where}.extract.{name} must contain exactly one capture group"
+                )
         checks.append(
             Check(
                 id=check_id,
@@ -156,6 +178,7 @@ def _parse_checks(raw: Any) -> tuple[Check, ...]:
                 ),
                 body=body,
                 contains=tuple(contains),
+                extract=extract,
                 stream=stream,
             )
         )
@@ -191,6 +214,12 @@ def load_manifest(path: str | Path) -> Manifest:
     ):
         raise ManifestError("template.services must be a non-empty string list")
     checks = _parse_checks(raw.get("checks"))
+    operations = raw.get("required_operations", sorted(KNOWN_OPERATIONS))
+    if not isinstance(operations, list) or not all(isinstance(value, str) for value in operations):
+        raise ManifestError("required_operations must be a string list")
+    unknown_operations = set(operations) - KNOWN_OPERATIONS
+    if unknown_operations:
+        raise ManifestError(f"unknown required operations: {sorted(unknown_operations)}")
     required = raw.get("required_categories", sorted(KNOWN_CATEGORIES))
     if not isinstance(required, list) or not all(isinstance(value, str) for value in required):
         raise ManifestError("required_categories must be a string list")
@@ -201,6 +230,21 @@ def load_manifest(path: str | Path) -> Manifest:
     missing = set(required) - present
     if missing:
         raise ManifestError(f"checks are missing required categories: {sorted(missing)}")
+    status = _required_string(template, "status", "template")
+    if status not in {"draft", "published"}:
+        raise ManifestError("template.status must be draft or published")
+
+    def optional_url(key: str) -> str | None:
+        value = template.get(key)
+        if value is None:
+            return None
+        if not isinstance(value, str) or not value.startswith("https://"):
+            raise ManifestError(f"template.{key} must be null or an HTTPS URL")
+        return value
+
+    last_smoke = template.get("last_successful_smoke")
+    if last_smoke is not None and (not isinstance(last_smoke, str) or not last_smoke.strip()):
+        raise ManifestError("template.last_successful_smoke must be null or a timestamp")
     return Manifest(
         path=manifest_path,
         slug=_required_string(template, "slug", "template"),
@@ -212,8 +256,15 @@ def load_manifest(path: str | Path) -> Manifest:
         chirp_locked=_required_string(template, "chirp_locked", "template"),
         start_command=_required_string(template, "start_command", "template"),
         health_path=health_path,
+        owner=_required_string(template, "owner", "template"),
+        support_url=_required_string(template, "support_url", "template"),
+        status=status,
+        public_url=optional_url("public_url"),
+        demo_url=optional_url("demo_url"),
+        last_successful_smoke=last_smoke,
         services=tuple(services),
         variables=_parse_variables(template.get("variables")),
         required_categories=tuple(required),
         checks=checks,
+        required_operations=tuple(operations),
     )

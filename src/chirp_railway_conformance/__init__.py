@@ -1,7 +1,7 @@
 """Reusable conformance checks for Chirp Railway templates."""
 
 from .manifest import Manifest, ManifestError, load_manifest
-from .runner import ConformanceError, run_local, run_smoke, validate_repository
+from .runner import ConformanceError, run_local, run_smoke, validate_operations, validate_repository
 
 __all__ = [
     "ConformanceError",
@@ -10,5 +10,6 @@ __all__ = [
     "load_manifest",
     "run_local",
     "run_smoke",
+    "validate_operations",
     "validate_repository",
 ]

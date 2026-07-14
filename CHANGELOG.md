@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0 - 2026-07-14
+
+- Add stateful cookie/CSRF journeys with extraction and interpolation.
+- Add complete owner, support, demo, status, and last-smoke manifest metadata.
+- Add classified deployment/restart/shutdown/update/rollback/ejection receipts.
+
 ## 0.1.1 - 2026-07-14
 
 - Run generic `python` commands inside the starter's locked virtual environment.

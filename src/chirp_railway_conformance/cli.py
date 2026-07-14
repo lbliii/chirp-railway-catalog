@@ -9,7 +9,15 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from .manifest import ManifestError, load_manifest
-from .runner import ConformanceError, Report, report_dict, run_local, run_smoke, validate_repository
+from .runner import (
+    ConformanceError,
+    Report,
+    report_dict,
+    run_local,
+    run_smoke,
+    validate_operations,
+    validate_repository,
+)
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -35,6 +43,11 @@ def _parser() -> argparse.ArgumentParser:
     smoke.add_argument("--deployment-id")
     smoke.add_argument("--deployment-status")
     smoke.add_argument("--evidence")
+    operations = subparsers.add_parser(
+        "operations", help="validate restart/update/rollback/ejection evidence"
+    )
+    operations.add_argument("manifest")
+    operations.add_argument("receipt")
     return parser
 
 
@@ -65,6 +78,10 @@ def main(argv: Sequence[str] | None = None) -> int:
                 request_timeout=args.request_timeout,
             )
             _write_report(args.evidence, report)
+            return 0
+        if args.command == "operations":
+            validate_operations(manifest, args.receipt)
+            print(f"operations valid: {manifest.slug}")
             return 0
         report = run_smoke(
             manifest,
