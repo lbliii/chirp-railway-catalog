@@ -50,6 +50,7 @@ def validate_repository(manifest: Manifest, repo: str | Path) -> None:
 
     root = Path(repo).resolve()
     required_files = (
+        ".python-version",
         "CHANGELOG.md",
         "LICENSE",
         "README.md",
@@ -60,6 +61,11 @@ def validate_repository(manifest: Manifest, repo: str | Path) -> None:
     missing = [name for name in required_files if not (root / name).is_file()]
     if missing:
         raise ConformanceError(f"repository is missing required files: {missing}")
+    python_version = (root / ".python-version").read_text(encoding="utf-8").strip()
+    if python_version != manifest.python:
+        raise ConformanceError(
+            ".python-version does not match the Python version declared in the manifest"
+        )
     railway = json.loads((root / "railway.json").read_text(encoding="utf-8"))
     deploy = railway.get("deploy", {})
     if deploy.get("startCommand") != manifest.start_command:

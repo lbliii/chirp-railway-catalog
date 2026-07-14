@@ -70,6 +70,7 @@ def _manifest(repo: Path, *, required: list[str] | None = None) -> Path:
 def _repo(tmp_path: Path) -> Path:
     for name in ("CHANGELOG.md", "LICENSE", "README.md", "uv.lock"):
         (tmp_path / name).write_text(name, encoding="utf-8")
+    (tmp_path / ".python-version").write_text("3.14\n", encoding="utf-8")
     (tmp_path / "pyproject.toml").write_text(
         '[project]\nname="fixture"\nversion="0.1.0"\ndependencies=["bengal-chirp>=0.10,<0.11"]\n',
         encoding="utf-8",
@@ -136,6 +137,15 @@ def test_repository_rejects_unreleased_chirp_dependency(tmp_path: Path) -> None:
     )
     manifest = load_manifest(_manifest(repo))
     with pytest.raises(ConformanceError, match="released Chirp"):
+        validate_repository(manifest, repo)
+
+
+@pytest.mark.issue(737)
+def test_repository_rejects_runtime_pin_drift(tmp_path: Path) -> None:
+    repo = _repo(tmp_path)
+    (repo / ".python-version").write_text("3.13\n")
+    manifest = load_manifest(_manifest(repo))
+    with pytest.raises(ConformanceError, match="Python version"):
         validate_repository(manifest, repo)
 
 
