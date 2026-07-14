@@ -1,0 +1,88 @@
+{
+  "base_url": "https://web-production-f6ecf.up.railway.app",
+  "checked_at": "2026-07-14T21:50:35.446109+00:00",
+  "deployment_id": "5908bfb7-ffcb-423d-8efd-ca61928d5b36",
+  "deployment_status": "SUCCESS",
+  "results": [
+    {
+      "category": "full-page",
+      "elapsed_ms": 266,
+      "id": "full-page",
+      "status": 200
+    },
+    {
+      "category": "form",
+      "elapsed_ms": 168,
+      "id": "malformed-form",
+      "status": 200
+    },
+    {
+      "category": "form",
+      "elapsed_ms": 336,
+      "id": "no-js-add",
+      "status": 200
+    },
+    {
+      "category": "oob",
+      "elapsed_ms": 189,
+      "id": "htmx-complete",
+      "status": 200
+    },
+    {
+      "category": "htmx",
+      "elapsed_ms": 163,
+      "id": "htmx-filter",
+      "status": 200
+    },
+    {
+      "category": "oob",
+      "elapsed_ms": 163,
+      "id": "oob-progress",
+      "status": 200
+    },
+    {
+      "category": "form",
+      "elapsed_ms": 349,
+      "id": "no-js-reset",
+      "status": 200
+    },
+    {
+      "category": "sse",
+      "elapsed_ms": 133,
+      "id": "sse-status",
+      "status": 200
+    },
+    {
+      "category": "sse",
+      "elapsed_ms": 137,
+      "id": "sse-reconnect",
+      "status": 200
+    },
+    {
+      "category": "asset",
+      "elapsed_ms": 221,
+      "id": "asset",
+      "status": 200
+    },
+    {
+      "category": "health",
+      "elapsed_ms": 159,
+      "id": "health",
+      "status": 200
+    },
+    {
+      "category": "readiness",
+      "elapsed_ms": 141,
+      "id": "readiness",
+      "status": 200
+    },
+    {
+      "category": "readiness",
+      "elapsed_ms": 246,
+      "id": "readiness-head",
+      "status": 200
+    }
+  ],
+  "source_ref": "v0.1.4",
+  "template": "chirp-launch-board"
+}

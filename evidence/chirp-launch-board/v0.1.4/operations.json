@@ -1,0 +1,32 @@
+{
+  "template": "chirp-launch-board",
+  "source_ref": "v0.1.4",
+  "deployment_id": "5908bfb7-ffcb-423d-8efd-ca61928d5b36",
+  "commit": "1550c9f77173c08a41b8bd88c03f0c8dba0696ea",
+  "operations": {
+    "deployment": {
+      "status": "passed",
+      "evidence": "Canonical public slug chirp-launch-board created project bc564b03-f478-4560-b579-72c8e7c117fb with no variable overrides; Railway resolved production, generated a 64-character secret, reached SUCCESS, and passed all 13 stateful checks."
+    },
+    "ejection": {
+      "status": "passed",
+      "evidence": "Template project 311fbdb7-e10e-4601-8748-dff55ff74172 ejected service 7fa4099a-c058-4394-85c7-dff730766a77 into public independent repository lbliii/chirp-launch-board-ejection-proof; Railway rewired the source and remained SUCCESS."
+    },
+    "restart": {
+      "status": "passed",
+      "evidence": "Deployment 5908bfb7-ffcb-423d-8efd-ca61928d5b36 restarted successfully; readiness recovered and a signed-session sentinel remained visible with the same browser cookie."
+    },
+    "rollback": {
+      "status": "passed",
+      "evidence": "Disposable demo project 3e008995-6913-431a-a008-059d9d24e6c9 rolled back from source a524185 to known-good 52fc7a9, passed readiness, then restored a524185 and passed readiness again."
+    },
+    "shutdown": {
+      "status": "passed",
+      "evidence": "Stopping the disposable demo deployment made /ready unavailable; redeploying the known-good image produced deployment 27a6e0fe-62d2-4ca5-b5dc-4100e08143d6 at SUCCESS and restored readiness."
+    },
+    "update": {
+      "status": "passed",
+      "evidence": "The template root main advanced from v0.1.3 commit a524185 to v0.1.4 commit 1550c9f; a fresh deployment through the canonical public slug built the exact new commit and passed the complete live journey."
+    }
+  }
+}
