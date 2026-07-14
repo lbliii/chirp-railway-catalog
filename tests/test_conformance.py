@@ -63,6 +63,7 @@ def _manifest(repo: Path, *, required: list[str] | None = None) -> Path:
                     "variables": [
                         {"name": "CHIRP_ENV", "source": "template", "secret": False},
                         {"name": "CHIRP_SECRET_KEY", "source": "railway", "secret": True},
+                        {"name": "CHIRP_ADMIN_TOKEN", "source": "template", "secret": True},
                     ],
                 },
                 "required_categories": categories,
@@ -109,7 +110,12 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        body = b"ready" if self.path == "/ready" else b"hello"
+        if self.path == "/ready":
+            body = b"ready"
+        elif os.environ.get("CHIRP_ADMIN_TOKEN"):
+            body = b"hello template-secret-set"
+        else:
+            body = b"hello template-secret-missing"
         self.send_response(200)
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
@@ -171,6 +177,19 @@ def test_local_runner_waits_smokes_and_terminates(tmp_path: Path) -> None:
     report = run_local(manifest, repo, startup_timeout=10)
     assert [result.id for result in report.results] == ["home", "ready"]
     assert all(result.status == 200 for result in report.results)
+
+
+@pytest.mark.issue(742)
+def test_local_runner_generates_manifest_template_secrets(tmp_path: Path) -> None:
+    repo = _repo(tmp_path)
+    manifest_path = _manifest(repo, required=["full-page"])
+    raw = json.loads(manifest_path.read_text())
+    raw["checks"][0]["contains"] = ["template-secret-set"]
+    manifest_path.write_text(json.dumps(raw))
+
+    report = run_local(load_manifest(manifest_path), repo, startup_timeout=10)
+
+    assert [result.id for result in report.results] == ["home"]
 
 
 @pytest.mark.issue(737)

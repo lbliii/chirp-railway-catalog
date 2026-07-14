@@ -286,6 +286,9 @@ def run_local(
         "CHIRP_SECRET_KEY": secrets.token_urlsafe(32),
         "PORT": str(selected_port),
     }
+    for variable in manifest.variables:
+        if variable.source == "template" and variable.secret:
+            env.setdefault(variable.name, secrets.token_urlsafe(32))
     with tempfile.TemporaryFile(mode="w+t", encoding="utf-8") as log:
         # The reviewed repository manifest intentionally owns its production command.
         process = subprocess.Popen(  # noqa: S603

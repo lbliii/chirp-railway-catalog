@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1 - 2026-07-14
+
+- Generate manifest-declared template secrets for local conformance without
+  inventing user inputs or Railway resource-reference variables.
+
 ## 0.2.0 - 2026-07-14
 
 - Add stateful cookie/CSRF journeys with extraction and interpolation.
