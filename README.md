@@ -25,6 +25,9 @@ captured deployment, restart, shutdown, update, rollback, and ejection proof.
 Each editable Railway application lives in its own focused repository. This
 catalog never becomes a monorepo containing ejectable starters.
 
+Redacted live receipts are kept under `evidence/<template>/<source-ref>/` so a
+promotion decision can be tied to the exact deployment and conformance run.
+
 ## Security
 
 Manifests record variable names and ownership, never secret values. Evidence
