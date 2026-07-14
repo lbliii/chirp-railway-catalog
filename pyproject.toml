@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chirp-railway-conformance"
+version = "0.1.0"
+description = "Conformance runner for Chirp Railway templates"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+
+[project.scripts]
+chirp-railway-check = "chirp_railway_conformance.cli:main"
+
+[dependency-groups]
+dev = [
+  "pytest>=8.4",
+  "ruff>=0.12",
+]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+markers = ["issue(number): acceptance coverage for a GitHub issue"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "S"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

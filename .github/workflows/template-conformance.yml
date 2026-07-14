@@ -1,0 +1,45 @@
+name: Chirp Railway template conformance
+
+on:
+  workflow_call:
+    inputs:
+      manifest:
+        description: Path to railway-template.json in the caller repository
+        required: false
+        default: railway-template.json
+        type: string
+
+jobs:
+  local-conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out starter
+        uses: actions/checkout@v4
+      - name: Check out conformance harness
+        uses: actions/checkout@v4
+        with:
+          repository: lbliii/chirp-railway-catalog
+          ref: main
+          path: .chirp-railway-catalog
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.14"
+          enable-cache: true
+      - name: Install starter
+        run: uv sync --frozen
+      - name: Install conformance harness
+        run: uv sync --project .chirp-railway-catalog --frozen
+      - name: Validate repository
+        run: >-
+          uv run --project .chirp-railway-catalog chirp-railway-check
+          validate "${{ inputs.manifest }}" --repo .
+      - name: Run local production smoke
+        run: >-
+          uv run --project .chirp-railway-catalog chirp-railway-check
+          local "${{ inputs.manifest }}" --repo . --evidence local-conformance.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: chirp-railway-local-conformance
+          path: local-conformance.json
+          if-no-files-found: ignore
