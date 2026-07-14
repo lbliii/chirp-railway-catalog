@@ -27,6 +27,7 @@ catalog never becomes a monorepo containing ejectable starters.
 
 Redacted live receipts are kept under `evidence/<template>/<source-ref>/` so a
 promotion decision can be tied to the exact deployment and conformance run.
+Marketplace screenshots and other listing collateral live under `assets/`.
 
 ## Security
 
