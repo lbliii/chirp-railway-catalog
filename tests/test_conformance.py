@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -145,3 +146,23 @@ def test_local_runner_waits_smokes_and_terminates(tmp_path: Path) -> None:
     report = run_local(manifest, repo, startup_timeout=10)
     assert [result.id for result in report.results] == ["home", "ready"]
     assert all(result.status == 200 for result in report.results)
+
+
+@pytest.mark.issue(737)
+def test_local_runner_uses_starter_venv_for_railway_python_command(tmp_path: Path) -> None:
+    repo = _repo(tmp_path)
+    manifest_path = _manifest(repo)
+    manifest_raw = json.loads(manifest_path.read_text())
+    manifest_raw["template"]["start_command"] = "python app.py"
+    manifest_path.write_text(json.dumps(manifest_raw))
+    railway_path = repo / "railway.json"
+    railway_raw = json.loads(railway_path.read_text())
+    railway_raw["deploy"]["startCommand"] = "python app.py"
+    railway_path.write_text(json.dumps(railway_raw))
+    interpreter = repo / ".venv" / "bin" / "python"
+    interpreter.parent.mkdir(parents=True)
+    os.symlink(sys.executable, interpreter)
+
+    report = run_local(load_manifest(manifest_path), repo, startup_timeout=10)
+
+    assert [result.id for result in report.results] == ["home", "ready"]

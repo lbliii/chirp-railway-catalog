@@ -165,6 +165,26 @@ def _free_port() -> int:
         return int(sock.getsockname()[1])
 
 
+def _local_command(root: Path, start_command: str) -> list[str]:
+    """Resolve a generic Railway command inside the starter's own environment."""
+
+    command = shlex.split(start_command)
+    if not command or command[0] not in {"python", "python3"}:
+        return command
+    candidates = (
+        root / ".venv" / "bin" / command[0],
+        root / ".venv" / "bin" / "python",
+        root / ".venv" / "Scripts" / "python.exe",
+    )
+    interpreter = next((candidate for candidate in candidates if candidate.is_file()), None)
+    if interpreter is None:
+        raise ConformanceError(
+            "starter virtual environment is missing; run `uv sync --frozen` "
+            "before local conformance"
+        )
+    return [str(interpreter), *command[1:]]
+
+
 def _wait_ready(url: str, process: subprocess.Popen[Any], timeout: float) -> None:
     deadline = time.monotonic() + timeout
     last_error = "not attempted"
@@ -211,7 +231,7 @@ def run_local(
     with tempfile.TemporaryFile(mode="w+t", encoding="utf-8") as log:
         # The reviewed repository manifest intentionally owns its production command.
         process = subprocess.Popen(  # noqa: S603
-            shlex.split(manifest.start_command),
+            _local_command(root, manifest.start_command),
             cwd=root,
             env=env,
             stdout=log,
