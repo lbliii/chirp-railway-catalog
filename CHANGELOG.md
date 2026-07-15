@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2 - 2026-07-14
+
+- Promote Chirp Feedback Board with zero-input deployment, stateful live smoke,
+  lifecycle, rollback, and source-ejection evidence.
+- Add the live Feedback Board marketplace screenshot.
+
 ## 0.2.1 - 2026-07-14
 
 - Generate manifest-declared template secrets for local conformance without

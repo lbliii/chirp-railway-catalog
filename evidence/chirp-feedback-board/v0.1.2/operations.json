@@ -1,0 +1,32 @@
+{
+  "template": "chirp-feedback-board",
+  "source_ref": "v0.1.2",
+  "deployment_id": "c2bfd5f0-8926-4425-aa5e-763f2013c8e2",
+  "commit": "65dd47677c070e1455969a333a13475ca225e8c4",
+  "operations": {
+    "deployment": {
+      "status": "passed",
+      "evidence": "Canonical public slug chirp-feedback-board created project 6835c769-6141-48f9-a93b-f3929672f5b9 with no variable overrides or prompts; Railway generated both application secrets, provisioned PostgreSQL, ran migrations, reached SUCCESS, and passed all 11 stateful live checks."
+    },
+    "ejection": {
+      "status": "passed",
+      "evidence": "Template project 6835c769-6141-48f9-a93b-f3929672f5b9 ejected service 6a8a9a1d-b67f-4954-b92b-0d0b490719c7 into public independent repository lbliii/chirp-feedback-board-ejection-proof; Railway rewired the source, deployment c2bfd5f0-8926-4425-aa5e-763f2013c8e2 reached SUCCESS, and the PostgreSQL sentinel remained visible."
+    },
+    "restart": {
+      "status": "passed",
+      "evidence": "Initial deployment 60b758cd-b95e-491b-9585-e67f61a84acb restarted successfully; readiness recovered and the database-backed sentinel Zero-input template proof 2026-07-14 remained visible."
+    },
+    "rollback": {
+      "status": "passed",
+      "evidence": "After source-update deployment 9319f17a-ac06-4c13-90c5-b3df5332d80b reached SUCCESS, historical deployment 60b758cd-b95e-491b-9585-e67f61a84acb was redeployed as 0c73c820-5f87-4c48-ae03-eb47d1e57aa8; readiness passed and existing PostgreSQL data remained visible."
+    },
+    "shutdown": {
+      "status": "passed",
+      "evidence": "Removing the disposable web deployment made /ready unavailable; restoring known-good deployment 0c73c820-5f87-4c48-ae03-eb47d1e57aa8 produced deployment 158fbcc5-4cd2-42a6-b652-e250ec8dfaea at SUCCESS, restored readiness, and retained the PostgreSQL sentinel."
+    },
+    "update": {
+      "status": "passed",
+      "evidence": "A source update from the configured lbliii/chirp-feedback-board main branch produced deployment 9319f17a-ac06-4c13-90c5-b3df5332d80b at SUCCESS with railway.json migrations, readiness, and start command loaded; existing PostgreSQL data remained visible."
+    }
+  }
+}
