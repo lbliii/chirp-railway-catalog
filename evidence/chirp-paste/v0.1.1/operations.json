@@ -1,0 +1,32 @@
+{
+  "template": "chirp-paste",
+  "source_ref": "v0.1.1",
+  "deployment_id": "bbd4828c-78de-401c-93d2-ee3a057b52b2",
+  "commit": "95768e121d5caa3e47faa7ae40e72fae5b6d4f85",
+  "operations": {
+    "deployment": {
+      "status": "passed",
+      "evidence": "Public code chirp-paste deployed into verified-empty proof project 7f1b6391-0303-4be0-80ad-10c7629ef30a with zero overrides or prompts. Railway created exactly web service 2910468c-6c6a-4e38-8c45-d6c553ba4226 and official postgres-ssl:18 service b415b7d6-0e02-487a-ba2b-1208593d0017, a 5 GB /var/lib/postgresql/data volume, generated CHIRP_SECRET_KEY and PASTE_ADMIN_TOKEN values, private PostgreSQL wiring, and terminal SUCCESS deployments 69c2645b-6674-4e8b-9656-745103c972ef and 72a52979-60a2-4124-999d-3c70b0146012."
+    },
+    "ejection": {
+      "status": "passed",
+      "evidence": "Railway ejected proof web service 2910468c-6c6a-4e38-8c45-d6c553ba4226 into independent public repository lbliii/chirp-paste-ejection-proof, rewired the service source, and produced SUCCESS deployment 88f15d5a-0195-4dfe-ae4d-80997e4dafd2 while the capability-managed acceptance paste, exact raw body, Unicode long line, and owner search remained intact in PostgreSQL."
+    },
+    "restart": {
+      "status": "passed",
+      "evidence": "A Railway restart recycled deployment 69c2645b-6674-4e8b-9656-745103c972ef without rebuilding; readiness recovered and the acceptance paste, exact raw response, and owner search remained available from PostgreSQL."
+    },
+    "rollback": {
+      "status": "passed",
+      "evidence": "Native Railway rollback deployment a6f4cb49-94b8-464d-b0f6-1d1228750634 restored v0.1.0 commit 5311aa4132fe1576a9f14468c03fd9173689b462, reached SUCCESS, and retained the live paste. SUCCESS deployment fe106dfb-3a18-42c9-aa61-5b2259173183 then restored v0.1.1."
+    },
+    "shutdown": {
+      "status": "passed",
+      "evidence": "Stopping v0.1.1 deployment fe106dfb-3a18-42c9-aa61-5b2259173183 reduced the web service to zero running replicas and readiness timed out with HTTP 000. SUCCESS recovery deployment bbd4828c-78de-401c-93d2-ee3a057b52b2 restored readiness and all persisted paste state."
+    },
+    "update": {
+      "status": "passed",
+      "evidence": "The zero-input proof advanced from v0.1.0 deployment 69c2645b-6674-4e8b-9656-745103c972ef at commit 5311aa4132fe1576a9f14468c03fd9173689b462 to v0.1.1 deployment f6c90ff8-c8c8-4a4c-b7f0-459013fc1f89 at commit 95768e121d5caa3e47faa7ae40e72fae5b6d4f85, reached SUCCESS, passed the live acceptance journey, and retained PostgreSQL data."
+    }
+  }
+}

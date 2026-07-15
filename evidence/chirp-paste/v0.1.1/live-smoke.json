@@ -1,0 +1,70 @@
+{
+  "base_url": "https://web-production-c7a37.up.railway.app",
+  "checked_at": "2026-07-15T21:05:35.100376+00:00",
+  "deployment_id": "bbd4828c-78de-401c-93d2-ee3a057b52b2",
+  "deployment_status": "SUCCESS",
+  "results": [
+    {
+      "category": "full-page",
+      "elapsed_ms": 301,
+      "id": "full-page",
+      "status": 200
+    },
+    {
+      "category": "form",
+      "elapsed_ms": 144,
+      "id": "invalid-owner-token",
+      "status": 200
+    },
+    {
+      "category": "form",
+      "elapsed_ms": 148,
+      "id": "invalid-paste",
+      "status": 200
+    },
+    {
+      "category": "htmx",
+      "elapsed_ms": 231,
+      "id": "htmx-owner",
+      "status": 200
+    },
+    {
+      "category": "oob",
+      "elapsed_ms": 147,
+      "id": "oob-stats",
+      "status": 200
+    },
+    {
+      "category": "asset",
+      "elapsed_ms": 157,
+      "id": "asset",
+      "status": 200
+    },
+    {
+      "category": "asset",
+      "elapsed_ms": 229,
+      "id": "favicon",
+      "status": 200
+    },
+    {
+      "category": "health",
+      "elapsed_ms": 140,
+      "id": "health",
+      "status": 200
+    },
+    {
+      "category": "readiness",
+      "elapsed_ms": 163,
+      "id": "readiness",
+      "status": 200
+    },
+    {
+      "category": "readiness",
+      "elapsed_ms": 223,
+      "id": "readiness-head",
+      "status": 200
+    }
+  ],
+  "source_ref": "v0.1.1",
+  "template": "chirp-paste"
+}

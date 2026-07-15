@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Register Chirp Paste with zero-input deployment, persistent snippet journeys,
+  lifecycle/rollback evidence, and its live marketplace artwork.
+
 ## 0.3.0 - 2026-07-14
 
 - Add an at-a-glance catalog registry for ownership, compatibility, smoke,
