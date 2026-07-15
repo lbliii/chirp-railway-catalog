@@ -1,0 +1,64 @@
+{
+  "base_url": "https://web-production-67fbc.up.railway.app",
+  "checked_at": "2026-07-15T14:41:19.233676+00:00",
+  "deployment_id": "f1dddb4c-4bbc-45a5-8a7e-47eac6371001",
+  "deployment_status": "SUCCESS",
+  "results": [
+    {
+      "category": "full-page",
+      "elapsed_ms": 234,
+      "id": "full-page",
+      "status": 200
+    },
+    {
+      "category": "form",
+      "elapsed_ms": 142,
+      "id": "invalid-owner-token",
+      "status": 200
+    },
+    {
+      "category": "htmx",
+      "elapsed_ms": 143,
+      "id": "htmx-dashboard",
+      "status": 200
+    },
+    {
+      "category": "oob",
+      "elapsed_ms": 237,
+      "id": "oob-dashboard",
+      "status": 200
+    },
+    {
+      "category": "asset",
+      "elapsed_ms": 143,
+      "id": "asset",
+      "status": 200
+    },
+    {
+      "category": "asset",
+      "elapsed_ms": 143,
+      "id": "favicon",
+      "status": 200
+    },
+    {
+      "category": "health",
+      "elapsed_ms": 223,
+      "id": "health",
+      "status": 200
+    },
+    {
+      "category": "readiness",
+      "elapsed_ms": 144,
+      "id": "readiness",
+      "status": 200
+    },
+    {
+      "category": "readiness",
+      "elapsed_ms": 145,
+      "id": "readiness-head",
+      "status": 200
+    }
+  ],
+  "source_ref": "v0.1.2",
+  "template": "chirp-status"
+}

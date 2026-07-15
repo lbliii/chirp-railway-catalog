@@ -1,0 +1,32 @@
+{
+  "template": "chirp-status",
+  "source_ref": "v0.1.2",
+  "deployment_id": "f1dddb4c-4bbc-45a5-8a7e-47eac6371001",
+  "commit": "c4f9888345781e7bc5df04df3e2a9e06dc86903f",
+  "operations": {
+    "deployment": {
+      "status": "passed",
+      "evidence": "Public code chirp-status-demo-1 created proof project 00fce81e-60b3-4ef1-b0b9-8c41e14e166e with web and official postgres-ssl:18 services, a 5 GB /var/lib/postgresql/data volume, generated 32-character secrets, no variable overrides or prompts, and terminal SUCCESS deployments."
+    },
+    "ejection": {
+      "status": "passed",
+      "evidence": "Railway ejected proof service d2edd748-d4a4-4285-b794-fcce4d8d9ae5 into independent public repository lbliii/chirp-status-ejection-proof, rewired the source, and produced SUCCESS deployment f59573d9-42c5-4e42-a09c-6dc8ed228660 with PostgreSQL state intact."
+    },
+    "restart": {
+      "status": "passed",
+      "evidence": "The proof web process drained and restarted on deployment 70f5d123-5413-45a7-bc7f-5bcf51fc6a91; readiness recovered and both Template persistence proof and Public HTTP proof remained visible from PostgreSQL."
+    },
+    "rollback": {
+      "status": "passed",
+      "evidence": "Proof deployment 7121fa92-a36f-42a1-8880-f73d1771fef5 restored known-good source 577896e, passed readiness with both persisted monitors, then latest-source deployment d1e0cd6f-a959-4d90-84e7-9d78746156e9 restored c4f9888 successfully."
+    },
+    "shutdown": {
+      "status": "passed",
+      "evidence": "Stopping proof deployment d1e0cd6f-a959-4d90-84e7-9d78746156e9 logged connection draining, lifespan shutdown, and server stop; ingress returned 404 until SUCCESS recovery deployment 147e34a5-80b6-4ce8-9aa4-d994aec55be2 restored readiness and persisted monitor state."
+    },
+    "update": {
+      "status": "passed",
+      "evidence": "The zero-input proof advanced from v0.1.0 commit 577896e to contract-complete commit 3dde7df in SUCCESS deployment f1dddb4c-4bbc-45a5-8a7e-47eac6371001, applied migration 002_monitor_policy, passed maintenance/status/timeout live checks, and retained both monitors."
+    }
+  }
+}
