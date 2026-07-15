@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-07-15T00:24:30Z",
+  "updated_at": "2026-07-15T14:51:00Z",
   "templates": [
     {
       "slug": "chirp-launch-board",
@@ -33,6 +33,23 @@
       "chirp_spec": ">=0.10,<0.11",
       "chirp_locked": "0.10.2",
       "last_successful_smoke": "2026-07-15T00:19:21.591331Z",
+      "update_status": "compatible",
+      "support_health": "healthy"
+    },
+    {
+      "slug": "chirp-status",
+      "title": "Uptime & Cron Monitor — Chirp + PostgreSQL",
+      "repository": "lbliii/chirp-status",
+      "source_ref": "v0.1.2",
+      "compatibility_ref": "v0.1.2",
+      "owner": "lbliii",
+      "support_url": "https://github.com/lbliii/chirp-status/issues",
+      "marketplace_url": "https://railway.com/deploy/chirp-status-demo-1",
+      "demo_url": "https://web-production-ec886.up.railway.app",
+      "status": "published",
+      "chirp_spec": ">=0.10,<0.11",
+      "chirp_locked": "0.10.2",
+      "last_successful_smoke": "2026-07-15T14:41:19.233676Z",
       "update_status": "compatible",
       "support_health": "healthy"
     }
