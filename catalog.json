@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-07-15T00:24:30Z",
+  "templates": [
+    {
+      "slug": "chirp-launch-board",
+      "title": "Python + HTMX Full-Stack Starter — powered by Chirp",
+      "repository": "lbliii/chirp-railway-starter",
+      "source_ref": "v0.1.4",
+      "compatibility_ref": "v0.1.4",
+      "owner": "lbliii",
+      "support_url": "https://github.com/lbliii/chirp-railway-starter/issues",
+      "marketplace_url": "https://railway.com/deploy/chirp-launch-board",
+      "demo_url": "https://web-production-f6ecf.up.railway.app",
+      "status": "published",
+      "chirp_spec": ">=0.10,<0.11",
+      "chirp_locked": "0.10.0",
+      "last_successful_smoke": "2026-07-14T21:50:35.446109Z",
+      "update_status": "compatible",
+      "support_health": "healthy"
+    },
+    {
+      "slug": "chirp-feedback-board",
+      "title": "Feedback & Roadmap Board — Chirp + PostgreSQL",
+      "repository": "lbliii/chirp-feedback-board",
+      "source_ref": "v0.1.2",
+      "compatibility_ref": "v0.1.4",
+      "owner": "lbliii",
+      "support_url": "https://github.com/lbliii/chirp-feedback-board/issues",
+      "marketplace_url": "https://railway.com/deploy/chirp-feedback-board",
+      "demo_url": "https://web-production-4a10d4.up.railway.app/",
+      "status": "published",
+      "chirp_spec": ">=0.10,<0.11",
+      "chirp_locked": "0.10.2",
+      "last_successful_smoke": "2026-07-15T00:19:21.591331Z",
+      "update_status": "compatible",
+      "support_health": "healthy"
+    }
+  ]
+}

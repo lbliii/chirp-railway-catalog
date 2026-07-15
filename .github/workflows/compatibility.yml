@@ -1,0 +1,67 @@
+name: Chirp starter compatibility
+
+on:
+  workflow_dispatch:
+    inputs:
+      chirp_requirement:
+        description: PEP 508 Chirp requirement to test
+        required: true
+        default: bengal-chirp==0.10.2
+        type: string
+
+jobs:
+  matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      value: ${{ steps.matrix.outputs.value }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: matrix
+        run: echo "value=$(python scripts/compatibility_matrix.py)" >> "$GITHUB_OUTPUT"
+
+  compatibility:
+    needs: matrix
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.matrix.outputs.value) }}
+    runs-on: ubuntu-latest
+    name: ${{ matrix.slug }}
+    steps:
+      - name: Check out catalog
+        uses: actions/checkout@v4
+      - name: Check out starter
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          ref: ${{ matrix.ref }}
+          path: starter
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.14"
+          enable-cache: true
+      - name: Install locked starter
+        run: uv sync --project starter --frozen
+      - name: Install Chirp candidate
+        run: >-
+          uv pip install --python starter/.venv/bin/python --upgrade
+          "${{ inputs.chirp_requirement }}"
+      - name: Run starter tests
+        working-directory: starter
+        run: .venv/bin/python -m pytest -q
+      - name: Install catalog harness
+        run: uv sync --frozen
+      - name: Validate starter contract
+        run: >-
+          uv run --no-sync chirp-railway-check validate
+          starter/railway-template.json --repo starter
+      - name: Run local production conformance
+        run: >-
+          uv run --no-sync chirp-railway-check local
+          starter/railway-template.json --repo starter
+          --evidence "compatibility-${{ matrix.slug }}.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compatibility-${{ matrix.slug }}
+          path: compatibility-${{ matrix.slug }}.json
+          if-no-files-found: ignore
