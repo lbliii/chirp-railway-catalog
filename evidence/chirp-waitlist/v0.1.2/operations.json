@@ -1,0 +1,32 @@
+{
+  "template": "chirp-waitlist",
+  "source_ref": "v0.1.2",
+  "deployment_id": "092519dc-93be-4f66-a80b-47cf88dff2bc",
+  "commit": "164ff6f88317e808b5a7e6d6ac633873c326100b",
+  "operations": {
+    "deployment": {
+      "status": "passed",
+      "evidence": "Public code chirp-waitlist created proof project b905b88c-6f13-49f5-ac85-0ff0e77cc8e5 with exactly web and official postgres-ssl:18 services, a 5 GB /var/lib/postgresql/data volume, generated CHIRP_SECRET_KEY and WAITLIST_ADMIN_TOKEN values, no variable overrides or prompts, private PostgreSQL wiring, and terminal SUCCESS deployments."
+    },
+    "ejection": {
+      "status": "passed",
+      "evidence": "Railway ejected proof service 4edd9f3b-686b-4415-a391-2647423cd7c9 into independent public repository lbliii/chirp-waitlist-ejection-proof, rewired the service source, and produced SUCCESS deployment 4479846f-0b1d-4b10-a18d-e47dc6b9ac9 with referral, cohort, and CSV-safety state intact in PostgreSQL."
+    },
+    "restart": {
+      "status": "passed",
+      "evidence": "A Railway restart request recycled the proof web runtime on deployment 092519dc-93be-4f66-a80b-47cf88dff2bc; readiness recovered and the acceptance signup, referral attribution, cohort, invite state, and CSV-safety state remained visible from PostgreSQL."
+    },
+    "rollback": {
+      "status": "passed",
+      "evidence": "Proof deployment a2687cb3-ba77-433e-972a-f0c96d6cdc87 restored v0.1.0 commit f11508100b87c21ff4aa472919b3c125e20d5283, passed readiness with persisted waitlist state, and SUCCESS deployments fb6513aa-0f18-45bd-8988-a67bb9457440 and 092519dc-93be-4f66-a80b-47cf88dff2bc restored v0.1.1 and v0.1.2."
+    },
+    "shutdown": {
+      "status": "passed",
+      "evidence": "Stopping the proof web service removed readiness ingress with HTTP 404; SUCCESS recovery deployment 727f9095-00da-49c7-a0a5-02912ff1c46e restored readiness and all persisted signup, referral, cohort, invite, and export state."
+    },
+    "update": {
+      "status": "passed",
+      "evidence": "The zero-input proof advanced from v0.1.1 deployment 57dd5d5e-aa37-413e-b9fd-2f892a715c3e to v0.1.2 deployment 092519dc-93be-4f66-a80b-47cf88dff2bc at commit 164ff6f88317e808b5a7e6d6ac633873c326100b, passed all ten live smoke checks, and retained PostgreSQL data."
+    }
+  }
+}
