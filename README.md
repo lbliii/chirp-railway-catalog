@@ -3,6 +3,11 @@
 The control plane for Chirp's Railway template program: template manifests,
 reusable conformance checks, compatibility evidence, and support ownership.
 
+[`catalog.json`](catalog.json) is the at-a-glance registry for ownership,
+supported and tested Chirp versions, last live smoke, update state, and support
+health. The maintainer workflow is defined in
+[`docs/OPERATIONS.md`](docs/OPERATIONS.md).
+
 ## Conformance CLI
 
 ```bash
@@ -28,6 +33,10 @@ catalog never becomes a monorepo containing ejectable starters.
 Redacted live receipts are kept under `evidence/<template>/<source-ref>/` so a
 promotion decision can be tied to the exact deployment and conformance run.
 Marketplace screenshots and other listing collateral live under `assets/`.
+
+The manually triggered **Chirp starter compatibility** workflow derives its
+matrix from every published catalog entry and tests a proposed Chirp package or
+release candidate across the full starter set.
 
 ## Security
 

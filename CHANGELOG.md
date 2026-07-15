@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0 - 2026-07-14
+
+- Add an at-a-glance catalog registry for ownership, compatibility, smoke,
+  update, and support status.
+- Define support, security, release, cost, and retirement operations.
+- Add a release-candidate compatibility sweep across every published starter.
+
 ## 0.2.2 - 2026-07-14
 
 - Promote Chirp Feedback Board with zero-input deployment, stateful live smoke,
