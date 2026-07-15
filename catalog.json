@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-07-15T20:09:42Z",
+  "updated_at": "2026-07-15T21:05:51Z",
   "templates": [
     {
       "slug": "chirp-launch-board",
@@ -67,6 +67,23 @@
       "chirp_spec": ">=0.10,<0.11",
       "chirp_locked": "0.10.2",
       "last_successful_smoke": "2026-07-15T19:59:20.241535Z",
+      "update_status": "compatible",
+      "support_health": "healthy"
+    },
+    {
+      "slug": "chirp-paste",
+      "title": "Snippet & Paste Vault — Chirp + PostgreSQL",
+      "repository": "lbliii/chirp-paste",
+      "source_ref": "v0.1.1",
+      "compatibility_ref": "v0.1.1",
+      "owner": "lbliii",
+      "support_url": "https://github.com/lbliii/chirp-paste/issues",
+      "marketplace_url": "https://railway.com/deploy/chirp-paste",
+      "demo_url": "https://web-production-815d2.up.railway.app",
+      "status": "published",
+      "chirp_spec": ">=0.10,<0.11",
+      "chirp_locked": "0.10.2",
+      "last_successful_smoke": "2026-07-15T21:05:51.543568Z",
       "update_status": "compatible",
       "support_health": "healthy"
     }
