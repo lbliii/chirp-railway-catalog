@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-07-15T14:51:00Z",
+  "updated_at": "2026-07-15T20:09:42Z",
   "templates": [
     {
       "slug": "chirp-launch-board",
@@ -50,6 +50,23 @@
       "chirp_spec": ">=0.10,<0.11",
       "chirp_locked": "0.10.2",
       "last_successful_smoke": "2026-07-15T14:41:19.233676Z",
+      "update_status": "compatible",
+      "support_health": "healthy"
+    },
+    {
+      "slug": "chirp-waitlist",
+      "title": "Referral Waitlist & Launch Desk — Chirp + PostgreSQL",
+      "repository": "lbliii/chirp-waitlist",
+      "source_ref": "v0.1.2",
+      "compatibility_ref": "v0.1.2",
+      "owner": "lbliii",
+      "support_url": "https://github.com/lbliii/chirp-waitlist/issues",
+      "marketplace_url": "https://railway.com/deploy/chirp-waitlist",
+      "demo_url": "https://web-production-6e0783.up.railway.app",
+      "status": "published",
+      "chirp_spec": ">=0.10,<0.11",
+      "chirp_locked": "0.10.2",
+      "last_successful_smoke": "2026-07-15T19:59:20.241535Z",
       "update_status": "compatible",
       "support_health": "healthy"
     }
