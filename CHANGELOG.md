@@ -4,6 +4,8 @@
 
 - Register Chirp Paste with zero-input deployment, persistent snippet journeys,
   lifecycle/rollback evidence, and its live marketplace artwork.
+- Register Chirp Queue v0.1.3 with zero-input deployment, live smoke, complete
+  lifecycle evidence, and its reviewed marketplace artwork.
 
 ## 0.3.0 - 2026-07-14
 

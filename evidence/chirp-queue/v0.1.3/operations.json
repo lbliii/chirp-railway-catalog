@@ -1,0 +1,32 @@
+{
+  "template": "chirp-queue",
+  "source_ref": "v0.1.3",
+  "deployment_id": "79a6418b-a819-41a6-af13-b4e6a7d1e8e9",
+  "commit": "52326f0d4a5f92dd58dad34a52c92f5011716e89",
+  "operations": {
+    "deployment": {
+      "status": "passed",
+      "evidence": "Canonical public slug chirp-queue deployed without prompts or overrides into empty project 7b334317-8670-414b-92cf-0b87b124c168, created web and official Postgres services plus the expected volume, reached SUCCESS, and passed the complete live journey."
+    },
+    "ejection": {
+      "status": "passed",
+      "evidence": "Proof service a3a5e491-d950-41f9-aca3-8f7fa066ab12 ejected into public independent repository lbliii/chirp-queue-ejected-proof-20260716; Railway rewired the source to its main branch and readiness remained healthy."
+    },
+    "restart": {
+      "status": "passed",
+      "evidence": "The proof web container restarted with Python 3.14.6; readiness recovered and the same private called ticket remained called while the wallboard continued hiding its name."
+    },
+    "rollback": {
+      "status": "passed",
+      "evidence": "Rollback created successful deployment 1a97ac72-c4c8-4f6a-8e42-63ec34e1831e from original commit 5144dff, readiness and PostgreSQL history persisted, then the service rolled forward to the corrected release and passed readiness again."
+    },
+    "shutdown": {
+      "status": "passed",
+      "evidence": "Removing deployment 3e26de0e-6a62-44a9-93ae-aa3bb5871b47 made /ready return 404 without touching Postgres; from-source recovery created deployment 79a6418b-a819-41a6-af13-b4e6a7d1e8e9 at SUCCESS, restored all 11 checks, and retained 12 ticket-history rows."
+    },
+    "update": {
+      "status": "passed",
+      "evidence": "The independent ejected mirror advanced from root commit 2721e356 to v0.1.3 tree commit 52326f0d; Railway auto-deployed that exact commit and the final recovered deployment passed the catalog smoke."
+    }
+  }
+}
