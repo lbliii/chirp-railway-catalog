@@ -1,0 +1,76 @@
+{
+  "base_url": "https://web-production-33843.up.railway.app",
+  "checked_at": "2026-07-16T16:11:05.690280+00:00",
+  "deployment_id": "79a6418b-a819-41a6-af13-b4e6a7d1e8e9",
+  "deployment_status": "SUCCESS",
+  "results": [
+    {
+      "category": "full-page",
+      "elapsed_ms": 333,
+      "id": "full-page",
+      "status": 200
+    },
+    {
+      "category": "form",
+      "elapsed_ms": 202,
+      "id": "honeypot-join",
+      "status": 200
+    },
+    {
+      "category": "full-page",
+      "elapsed_ms": 194,
+      "id": "display-page",
+      "status": 200
+    },
+    {
+      "category": "htmx",
+      "elapsed_ms": 268,
+      "id": "htmx-display-panel",
+      "status": 200
+    },
+    {
+      "category": "sse",
+      "elapsed_ms": 143,
+      "id": "display-sse-oob",
+      "status": 200
+    },
+    {
+      "category": "oob",
+      "elapsed_ms": 174,
+      "id": "oob-honeypot-join",
+      "status": 200
+    },
+    {
+      "category": "asset",
+      "elapsed_ms": 207,
+      "id": "asset",
+      "status": 200
+    },
+    {
+      "category": "asset",
+      "elapsed_ms": 169,
+      "id": "favicon",
+      "status": 200
+    },
+    {
+      "category": "health",
+      "elapsed_ms": 162,
+      "id": "health",
+      "status": 200
+    },
+    {
+      "category": "readiness",
+      "elapsed_ms": 193,
+      "id": "readiness",
+      "status": 200
+    },
+    {
+      "category": "readiness",
+      "elapsed_ms": 171,
+      "id": "readiness-head",
+      "status": 200
+    }
+  ],
+  "source_ref": "v0.1.3",
+  "template": "chirp-queue"
+}

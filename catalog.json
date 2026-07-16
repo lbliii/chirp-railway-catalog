@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-07-15T21:05:51Z",
+  "updated_at": "2026-07-16T16:11:05Z",
   "templates": [
     {
       "slug": "chirp-launch-board",
@@ -84,6 +84,23 @@
       "chirp_spec": ">=0.10,<0.11",
       "chirp_locked": "0.10.2",
       "last_successful_smoke": "2026-07-15T21:05:51.543568Z",
+      "update_status": "compatible",
+      "support_health": "healthy"
+    },
+    {
+      "slug": "chirp-queue",
+      "title": "Private Live Service Queue — Chirp + PostgreSQL",
+      "repository": "lbliii/chirp-queue",
+      "source_ref": "v0.1.3",
+      "compatibility_ref": "v0.1.3",
+      "owner": "lbliii",
+      "support_url": "https://github.com/lbliii/chirp-queue/issues",
+      "marketplace_url": "https://railway.com/deploy/chirp-queue",
+      "demo_url": "https://web-production-33843.up.railway.app",
+      "status": "published",
+      "chirp_spec": ">=0.10,<0.11",
+      "chirp_locked": "0.10.2",
+      "last_successful_smoke": "2026-07-16T16:11:05.690280Z",
       "update_status": "compatible",
       "support_health": "healthy"
     }
